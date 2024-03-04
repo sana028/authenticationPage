@@ -1,0 +1,23 @@
+<div class="main-page">
+    <div class="nav-tab">
+        
+        <button class="todo" (click)="getUserDetails()">Home</button>
+      <button class="todo" (click)="goToDopage()">ToDo</button>
+      <button class="todo" (click)="giveReview()">Review</button>
+    </div>
+    <section class="main-body">
+     <div class="container">
+       <div class="user-details" *ngIf="isHomeVisible">
+        <app-user-details></app-user-details>
+       </div>
+       <div class="todo-list" *ngIf="isTodoListVisible">
+         <app-todo ></app-todo>
+       </div>
+        <div>
+        </div>
+       </div>
+     <div class="main-info">
+
+     </div>
+    </section>
+</div>

@@ -6,14 +6,15 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
-import { FooterComponent } from './components/footer/footer.component';
+import { FooterComponent } from '../footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HomeComponent } from './components/home/home.component';
+
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-home',
   standalone: true,
   imports: [
+    RouterLink,
     RouterOutlet,
     MatSlideToggle,
     MatButtonModule,
@@ -23,12 +24,11 @@ import { HomeComponent } from './components/home/home.component';
     MatIconModule,
     FooterComponent,
     NgbModule,
-    HomeComponent,
-    RouterLink
   ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss'
 })
-export class AppComponent {
-  title = 'authenticationPage';
+export class HomeComponent {
+
+
 }

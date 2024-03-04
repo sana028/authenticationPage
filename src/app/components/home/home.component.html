@@ -1,0 +1,87 @@
+<div class="main">
+    <div class="main-header">
+      <div class="header wrapper">
+        <div class="nav-left">Logo</div>
+        <div></div>
+        <nav>
+          <ul>
+            <li>Explore</li>
+            <li>Pricing</li>
+            <li>Tutorials</li>
+            <li>|</li>
+            <a routerLink="sign-up" class="cursor-pointer" style="cursor:pointer">Sign In</a>
+           
+            <li class="join-button"> <button mat-button color="accent">JOIN</button></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="main-body">
+        <div class="main-left-body">
+          <h1 class="ai-text">AI Programming Language</h1>
+          <h2>Make a Professional <br /> Logon in few steps</h2>
+  
+          <div class="input-box">
+            <input type="text" placeholder="Type Your Search Word" aria-label="" matInput>
+          </div>
+          <button mat-button>Make Your Logo</button>
+        </div>
+        <div class="main-right-body">
+          <picture>
+            <source media="(min-width:1160px)" srcset="../assets/blue-cap.webp">
+            <img src="../assets/blue-cap.webp" width="300px" class="image" />
+          </picture>
+          <picture>
+            <source media="(min-widht:1160px)" srcset="../assets/gamer.webp">
+            <img src="../assets/gamer.webp" width="300px" class="image" />
+          </picture>
+          <picture>
+            <source media="(min-width:1160px)" srcset="../assets/mobile.webp">
+            <img src="../assets/mobile.webp" width="300px" class="image" />
+          </picture>
+        </div>
+      </div>
+      <div class="arrow-icon" style="display:flex;justify-content: center;">
+        <mat-icon class="mat-18" fontIcon="arrow_downward"></mat-icon>
+      </div>
+    </div>
+    <div class="create-text">
+      <h2 class="create-logo">Create a logo you'll love for your brand with Fiverr<br /> Logo Maker</h2>
+    </div>
+    <div style="display: grid;margin:69px;" class="icons">
+      <div class="search">
+        <div >
+          <mat-icon fontIcon="search"></mat-icon>
+        </div>
+        <h3>Your style, Fiverr's designers</h3>
+        <div>
+          <p> Get a logo with your brand's look & feel, based on beautiful logo designs made by Fiverr's designers.</p>
+  
+        </div>
+      </div>
+        <div class="search" >
+          <div>
+            <mat-icon fontIcon="search"></mat-icon>
+          </div>
+          <h3>Your style, Fiverr's designers</h3>
+          <div>
+            <p> Get a logo with your brand's look & feel, based on beautiful logo designs made by Fiverr's designers.</p>
+  
+          </div>
+          </div>
+          <div class="search" >
+            <div>
+              <mat-icon fontIcon="search"></mat-icon>
+            </div>
+            <h3>Your style, Fiverr's designers</h3>
+            <div>
+              <p> Get a logo with your brand's look & feel, based on beautiful logo designs made by Fiverr's designers.
+              </p>
+  
+            </div>
+            </div>
+  
+          </div>
+          <app-footer></app-footer>
+        </div>
+        <router-outlet></router-outlet>
+  
