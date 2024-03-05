@@ -8,6 +8,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { FooterComponent } from '../footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { HttpClientModule } from '@angular/common/http';
+import { OAuthModule,OAuthService } from 'angular-oauth2-oidc';
+
 
 
 @Component({
@@ -24,7 +27,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatIconModule,
     FooterComponent,
     NgbModule,
+   OAuthModule,
   ],
+  providers:[OAuthService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

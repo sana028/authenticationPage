@@ -8,6 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 include '../dbConnection.php';
 
+
 if($_SERVER['REQUEST_METHOD']==='POST'){
     $data=json_decode(file_get_contents('php://input'));
     echo 'is data coming';
@@ -28,8 +29,14 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                 echo 'sorry there is an error on creating account try again after some time';
             }
             header('Content-Type: application/json');
+            
+            
 
     }
    
 }
+
+// $people=new GooglePeople($googleOauthHandler);
+
+
 ?>

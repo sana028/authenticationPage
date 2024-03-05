@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { UserDetailsComponent } from '../user-details/user-details.component';
 import { TodoComponent } from '../todo/todo.component';
-import { ActivatedRoute } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
 import { HttpClientModule } from '@angular/common/http';
+import { PeopleService } from '../../config/people/people.service';
 
 
 @Component({
@@ -19,20 +18,10 @@ export class MainpageComponent {
     isTodoListVisible:boolean=false;
     isReviewVisible:boolean=false;
 
-    // constructor(private route: ActivatedRoute) {}
-    // ngOnInit() {
-    //   this.idToken = this.route.snapshot.queryParams['idToken'];
-    //   if(this.idToken)
-    //   {const decodedToken=jwtDecode(this.idToken);
-    //   const expirationTime =(decodedToken?.exp || 1) * 1000;
-    //   const expireTime=new Date(expirationTime);
-    //   const formatter = new Intl.DateTimeFormat('en-US', {
-    //     hour: '2-digit',
-    //     minute: '2-digit'
-    //   });
-    // this.formattedTime = formatter.format(expireTime);
-    // }
-    // }
+   constructor(private gapi:PeopleService){}
+  //  ngOnInit(){
+  //   gapi.load('client', this.gapi.initializeGapiClient);
+  //  }
 
     getUserDetails(){
       this.isHomeVisible=true;

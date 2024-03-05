@@ -35,34 +35,85 @@ export class TodoComponent {
   flipTheCard(){
     this.isFlipped=!this.isFlipped;
   }
+
+  async exchangeIdTokenForAccessToken(idToken: string): Promise<any> {
+    const url = 'https://oauth2.googleapis.com/token';
+    const clientId = '137441761832-79qkqb7lojnkpltfieg6dp4u7dgqgea0.apps.googleusercontent.com'; // Replace with your Google Cloud project's client ID
+    const clientSecret = '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'; // Replace with your Google Cloud project's client secret (keep confidential)
+    const redirectUri = 'http://localhost:4200'; // Replace with your redirect URI specified during Google Sign-In setup
   
-  onSubmit(data: NgForm){
-     console.log(data.value,data.value.name && data.value.password && data.value.confirmPassowrd && data.value.email);
-   if(data.value.name && data.value.password && data.value.confirmPassowrd && data.value.email)
-   {
-    
-     console.log(this.tokenService.getToken(),this.tokenService.isTokenExpired());
-     this.idToken=this.tokenService.getToken();
-     const apiurl='http://localhost:8080/api/create.php';
-     const responseData={
-      name:data.value.name,
-      email:data.value.email,
-      password:data.value.password
-     }
-     this.http.post(apiurl,responseData,{
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.idToken}`,
-      },
-     }).subscribe(
-      (response) => {
-        // Handle POST response
-      },
-      (error) => {
-        // Handle POST error
-        console.log(error);
+    const data = {
+      grant_type: 'authorization_code',
+      client_id: clientId,
+      client_secret: clientSecret,
+      redirect_uri: redirectUri,
+      code: idToken
+    };
+  
+    try {
+      const response = await this.http.post(url, data, { observe: 'response' }).toPromise();
+  
+      if (response?.status === 200) {
+        return response.body; // Access token and other information
+      } else {
+        throw new Error(`Error exchanging ID token: ${response?.statusText}`);
       }
-     )
-   }
+    } catch (error) {
+      throw error;
+    }
   }
+  
+ 
+  async getUserProfile(idToken:any) {
+    const accessToken = idToken;
+  
+    try {
+      const response = await fetch('https://people.googleapis.com/v1/people/me?personFields=emailAddresses,names,photos', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+  
+      if (!response.ok) {
+        throw new Error(`API request failed with status ${response.status}`);
+      }
+  
+      const profileData = await response.json();
+      console.log(profileData); // Access user profile information
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  onSubmit(data: NgForm){
+    if(data.value.name && data.value.password && data.value.confirmPassowrd && data.value.email)
+    {
+     
+      this.idToken=this.tokenService.getToken();
+      this.exchangeIdTokenForAccessToken(this.idToken);
+      const apiurl='http://localhost:8080/api/create.php';
+      const responseData={
+       name:data.value.name,
+       email:data.value.email,
+       password:data.value.password
+      }
+      this.http.post(apiurl,responseData,{
+       headers: {
+         'Content-Type': 'application/json',
+         Authorization: `Bearer ${this.idToken}`,
+       },
+      }).subscribe(
+       (response) => {
+         // Handle POST response
+       },
+       (error) => {
+         // Handle POST error
+         console.log(error);
+       }
+      )
+      
+    }
+
+   }
+  
 }
